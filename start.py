@@ -175,7 +175,7 @@ def run_generate_config(environ, ownership):
         args = ["su-exec", ownership] + args
         os.execv("/sbin/su-exec", args)
     else:
-        os.execv("/usr/local/bin/python", args)
+        os.execv("/usr/bin/python3", args)
 
 
 def main(args, environ):
