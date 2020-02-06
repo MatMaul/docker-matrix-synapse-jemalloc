@@ -1,0 +1,22 @@
+FROM ubuntu:eoan
+
+RUN apt update
+RUN apt dist-upgrade -y
+RUN apt install -y --no-install-recommends curl ca-certificates gnupg2 libjemalloc2
+RUN echo "deb https://packages.matrix.org/debian eoan main" >> /etc/apt/sources.list
+RUN curl -L https://packages.matrix.org/debian/matrix-org-archive-keyring.asc | apt-key add -
+RUN apt update
+RUN env DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends matrix-synapse-py3 python3-jinja2
+RUN apt remove -y gnupg2
+RUN apt autoremove -y
+RUN apt clean
+
+COPY ./start.py /start.py
+COPY ./conf /conf
+
+VOLUME ["/data"]
+
+EXPOSE 8008/tcp 8009/tcp 8448/tcp
+
+ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
+ENTRYPOINT ["/start.py"]
