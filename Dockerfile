@@ -15,4 +15,5 @@ VOLUME ["/data"]
 EXPOSE 8008/tcp 8009/tcp 8448/tcp
 
 ENV LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
+ENV PYTHONPATH="/usr/local/lib/python3.7/dist-packages"
 ENTRYPOINT ["/start.py"]
