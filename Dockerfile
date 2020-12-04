@@ -2,7 +2,7 @@ FROM python:3.8-slim-buster
 
 RUN apt update \
 &&  apt install -y --no-install-recommends ca-certificates libpq5 libffi6 libssl1.1 libxslt1.1 libxml2 libjpeg62-turbo zlib1g libgnutls30 pwgen libldap-2.4-2 libsasl2-2 sqlite xmlsec1 build-essential libjemalloc2 \
-&&  pip3 install matrix-synapse==1.23.0 psycopg2-binary matrix-synapse-ldap3 pysaml2 lxml txacme Jinja2 pyopenssl \
+&&  pip3 install matrix-synapse==1.24.0rc2 psycopg2-binary matrix-synapse-ldap3 pysaml2 lxml txacme Jinja2 pyopenssl \
 &&  apt remove -y build-essential \
 &&  apt autoremove -y \
 &&  apt clean \
